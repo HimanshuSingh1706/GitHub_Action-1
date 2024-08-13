@@ -3,7 +3,7 @@ name: Generate ASCII Artwork
 on: push
 
 jobs:
-    build_jobs_1:
+    first_jobs_1:
         runs-on: ubuntu-latest
         steps:
             - name: Install Cowsay  Program
@@ -15,7 +15,8 @@ jobs:
             - name: Sleep for 30 seconds
               run: sleep 30
     
-    test_jobs_2:
+    first_jobs_2:
+        needs: first_jobs_1
         runs-on: ubuntu-latest
         steps:
             - name: Sleep for 10 seconds
@@ -25,7 +26,8 @@ jobs:
               run: grep -i "dragon" dragon.txt
 
                 
-    deploy_jobs_3:
+    first_jobs_3:
+        needs: [first_jobs_2]
         runs-on: ubuntu-latest
         steps:
             - name: Read File
